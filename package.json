@@ -1,10 +1,10 @@
 {
   "name": "react-native-permanent-service",
   "version": "0.1.0",
-  "description": "test",
+  "description": "React Native permanent background service",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "types": "lib//index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
@@ -26,23 +26,33 @@
     "!**/__mocks__",
     "!**/.*"
   ],
+  "packageManager": "yarn@3.5.0",
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepack": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
+    "example": "yarn workspace PermanentServiceExample",
     "bootstrap": "yarn example && yarn install && yarn example pods",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build"
   },
+  "workspaces": [
+    "example"
+  ],
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "background",
+    "permanent",
+    "service",
+    "headless",
+    "thread",
+    "background-service"
   ],
   "repository": "https://github.com/Nawbc/react-native-permanent-service",
-  "author": "Nawbc <wanghan9423@outlook.com> (https://github.com/Nawbc)",
+  "author": "Han <wanghan9423@outlook.com> (https://github.com/Nawbc)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Nawbc/react-native-permanent-service/issues"
@@ -52,8 +62,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@evilmartians/lefthook": "^1.2.2",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
@@ -83,7 +93,6 @@
   "engines": {
     "node": ">= 16.0.0"
   },
-  "packageManager": "^yarn@1.22.15",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [

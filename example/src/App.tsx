@@ -1,20 +1,27 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-permanent-service';
+import { StyleSheet, View } from 'react-native';
+import * as PermanentService from 'react-native-permanent-service';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    PermanentService.initialize({
+      script: 'demo.js',
+    });
+
+    PermanentService.start('request.js');
+
+    const eventListener = PermanentService.channel.addListener(
+      'stop',
+      (event) => {
+        console.log(event.eventProperty);
+      }
+    );
+
+    return () => eventListener.remove();
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
-  );
+  return <View style={styles.container}>Demo</View>;
 }
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-package com.permanentservice;
+package com.deskbtm.nawb.service.permanent;
 
 import androidx.annotation.NonNull;
 
